@@ -1,0 +1,190 @@
+<br> 
+<div class="container">
+  <div class="row">
+    <div class="col-lg-3">
+      <div>
+        <h4>Add/Update your Details </h4>
+      </div>
+      <form id="formValues" [formGroup]="signupForm" (ngSubmit)="addItem()">
+        <div class="form-group">
+          <label for="forName">Name</label>
+          <input formControlName="name" type="text" class="form-control" placeholder="Enter Name" >
+        </div>
+        <span *ngIf="signupForm.controls['name'].invalid" class="alert">
+          <span *ngIf="signupForm.controls['name'].errors.required">* Please enter name
+          </span>
+        </span>
+        <br>
+        <div class="form-check">
+          <input formControlName="gender" class="form-check-input" type="radio" value="male" id="flexRadioDefault1">
+          <label class="form-check-label" for="flexRadioDefault1">
+            Male
+          </label>
+        </div>
+        <div class="form-check">
+          <input formControlName="gender" value="female" class="form-check-input" type="radio" id="flexRadioDefault2">
+          <label class="form-check-label" for="flexRadioDefault2">
+            Female
+          </label>
+        </div>
+
+        <div class="form-group ">
+          <label for="forName">Select Age</label>
+
+
+          <input list="id-age"  formControlName="age" class="form-control" (click)="selectAge()">
+          <datalist id="id-age">
+            <option *ngFor="let age of ageList" [value]="age" placeholder="Enter Age">{{age}}</option>
+          </datalist>
+          <!-- <input list="id-age "  class="form-control" (click)="selectAge()">
+          <datalist id="id-age">
+            <option *ngFor="let age of ageList" [value]="age">{{age.ageList}}</option>
+          </datalist> -->
+
+          <!-- <input id="age-input-field" formControlName="age" type="number" min="18" max="30" class="form-control age-input"  placeholder="Enter Age" (click)="selectAge()">
+          <div class="list-wrap" id="list-wrap">
+            <div  *ngFor="let age of ageList;" class="age-list" (click)="findAge(age)" >{{age}}</div>
+          </div> -->
+
+          <!-- <select placeholder="Select Age" formControlName="age" class="form-control" (click)="selectAge()"  id="select">
+            <option disabled>Select Age</option>
+            <option >Select age</option>
+            <option *ngFor="let age of ageList">{{age}}</option>
+          </select> -->
+        </div>
+
+        <br>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input formControlName="email" class="form-control" id="exampleInputPassword1" placeholder="Enter your email">
+        </div>
+        <span *ngIf="signupForm.controls['email'].invalid" class="alert">
+          <span *ngIf="signupForm.controls['email'].errors.required">* Please enter email
+          </span>
+        </span>
+        <br>
+        <div class="form-group">
+          <label for="forName">Mobile No.</label>
+          <input formControlName="mobile" type="text" class="form-control" placeholder="Enter Name Mobile number">
+        </div>
+        <span *ngIf="signupForm.controls['mobile'].invalid" class="alert">
+          <span *ngIf="signupForm.controls['mobile'].errors.required">* Please enter mobile number
+          </span>
+        </span>
+        <br>
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">About Me</label>
+          <textarea formControlName="information" class="form-control" id="exampleFormControlTextarea1"
+            rows="3"></textarea>
+        </div>
+        <span *ngIf="signupForm.controls['information'].invalid" class="alert">
+          <span *ngIf="signupForm.controls['information'].errors.required">* Please provide information
+          </span>
+        </span>
+        <br>
+        <!-- <div class="d-flex flex-row align-items-start">
+          <div class="form-group row align-items-center">
+            <div class="col-md-10" id="input-wrap">
+              <input formControlName="hobbies" type="text" name="" id="" class="form-control">
+            </div>
+          </div>
+          <div class="col-md-2 mt-2">
+            <i class="fa fa-plus-circle addInput" aria-hidden="true" style="font-size: 22px; cursor: pointer;" (click)="addInput()"></i>
+          </div>
+        </div>
+          <br> -->
+
+          <!-- <div class="d-flex flex-row align-items-start" >
+            <div class="form-group row align-items-center">
+              <div class="col-md-10" >
+                <input formControlName="hobbies" type="text" name="" id="" class="form-control">
+                <div class="showInputField" ></div>
+              </div>
+            </div>
+            <div class="col-md-2 mt-2">
+              <i class="fa fa-plus-circle " aria-hidden="true" style="font-size: 22px; cursor: pointer;" (click)="addInputField()"></i>
+            </div>
+          </div>
+          <br> -->
+
+
+
+          <label for="">Hobbies</label>
+          <div class="row">
+            <div class="col-10">
+              <input formControlName="task" type="text" name="" id="" class="form-control" placeholder="Enter Hobbies">
+            </div>
+            <div class="col-2" >
+              <i class="fa fa-plus-circle mt-2" style="font-size: 22px; cursor: pointer;" aria-hidden="true" (click)="inputFieldsButton()"></i>
+           </div>
+          </div>
+
+          <div class="group-gap" formArrayName="hobbies">
+             <div class="mb-3 ">
+               <div *ngFor="let item of hobbies.controls; let y = index">
+                 <i class="fa fa-minus-circle" aria-hidden="true" style="font-size: 22px; cursor: pointer; top: -10px" id="field_{{y}}" (click)="removeInputField(item , y)" >
+                 </i>
+                   <input  type="text" class="form-control" [formControlName]="y" id="fields_{{y}}">
+               </div >
+            </div>
+         </div>
+         <br>
+
+          <!-- <div class="showInputField"></div>
+          <i class="fa fa-plus-circle addInput" aria-hidden="true" style="font-size: 22px; cursor: pointer;" (click)="addInputField()"></i> -->
+
+        <button type="submit" [disabled]="!signupForm.valid" class="btn btn-primary" id="submit">Submit</button>
+        <button type="button" (click)="resetForm()" class="btn btn-primary reset" id="submit">Reset</button>
+      </form>
+    </div>
+
+
+    <div class="col-lg-9">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="col-lg-5">
+              <label for="">Search by Name</label>
+              <input type="text" class="form-control" [(ngModel)]="searchValue" id="search">
+            </div>
+            <br>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">Sl No.</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Gender</th>
+                  <th scope="col">Age</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Mobile</th>
+                  <th scope="col">About Me</th>
+                  <th scope="col">Hobbies</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of listData | filter:searchValue; let i = index">
+                  <th scope="row" id="firstrow">{{i + 1}}</th>
+                  <!-- add string interpolation data and populate it here -->
+                  <td>{{ item.name }}</td>
+                  <td>{{ item.gender }}</td>
+                  <td>{{ item.age }}</td>
+                  <td>{{ item.email }}</td>
+                  <td>{{ item.mobile }}</td>
+                  <td>{{ item.information }}</td>
+                  <td>{{item.task}},{{ item.hobbies }}</td>
+                  <td>
+                    <button type="button" id="edit" class="btn btn-success" (click)="edit(item, i)"><i class="fas fa-edit "></i>
+                    </button>
+                    <button type="button" class="btn btn-danger" (click)="delete(item)"><i
+                        class="fa fa-trash-alt"></i></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

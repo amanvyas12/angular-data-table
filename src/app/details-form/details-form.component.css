@@ -1,0 +1,35 @@
+.reset {
+  margin-left:5px;
+}
+/* #inputWrap:before
+{
+  content: '';
+  width: 32px;
+  height: 32px;
+  margin-right: 8px;
+}
+#inputWrap::before{
+  background-image: url(``);
+} */
+.age-list{
+  width: 240px;
+  display: block;
+  /* border: 1px solid grey; */
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+.list-wrap{
+  height: 100px;
+  display: none;
+  overflow-y: scroll;
+}
+.list-wrap.active{
+  display: block;
+}
+.showInputField{
+
+}
+li{
+  display: block;
+}
